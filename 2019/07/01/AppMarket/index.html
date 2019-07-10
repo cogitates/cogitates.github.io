@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="大二下学期的最后，是两个星期的数据库课程设计,做了这样一个简单的小应用，给出github地址。这里做个简单的记录。 主要内容安卓应用市场管理系统，本系统面向用户，管理员，开发者三方１．用户：实现用户注册和登录；实现app的详情查看，下载，评分，反馈２．管理员：审核app的上架，下架；控制开发者或用户的账号注销，规范开发者的开发行为，查看系统的整体情况３．开发者：实现开发者注册和登录；提交app(给">
+<meta name="keywords" content="Python,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python模拟安卓应用市场的工作原理">
+<meta property="og:url" content="http://cogitates.github.io/2019/07/01/AppMarket/index.html">
+<meta property="og:site_name" content="Cogitates&#39; Notes">
+<meta property="og:description" content="大二下学期的最后，是两个星期的数据库课程设计,做了这样一个简单的小应用，给出github地址。这里做个简单的记录。 主要内容安卓应用市场管理系统，本系统面向用户，管理员，开发者三方１．用户：实现用户注册和登录；实现app的详情查看，下载，评分，反馈２．管理员：审核app的上架，下架；控制开发者或用户的账号注销，规范开发者的开发行为，查看系统的整体情况３．开发者：实现开发者注册和登录；提交app(给">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-02T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python模拟安卓应用市场的工作原理">
+<meta name="twitter:description" content="大二下学期的最后，是两个星期的数据库课程设计,做了这样一个简单的小应用，给出github地址。这里做个简单的记录。 主要内容安卓应用市场管理系统，本系统面向用户，管理员，开发者三方１．用户：实现用户注册和登录；实现app的详情查看，下载，评分，反馈２．管理员：审核app的上架，下架；控制开发者或用户的账号注销，规范开发者的开发行为，查看系统的整体情况３．开发者：实现开发者注册和登录；提交app(给">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://cogitates.github.io/2019/07/01/AppMarket/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python模拟安卓应用市场的工作原理 | Cogitates' Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cogitates' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay hungry,stay folish.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cogitates.github.io/2019/07/01/AppMarket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cogitates">
+      <meta itemprop="description" content="Personal Blog">
+      <meta itemprop="image" content="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cogitates' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python模拟安卓应用市场的工作原理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-01T00:00:00+08:00">2019-07-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-03 00:00:00" itemprop="dateModified" datetime="2019-07-03T00:00:00+08:00">2019-07-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大二下学期的最后，是两个星期的数据库课程设计,做了这样一个简单的小应用，给出<a href="https://github.com/cogitates/AppMarket" target="_blank" rel="noopener">github地址</a>。这里做个简单的记录。</p>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><p>安卓应用市场管理系统，本系统面向用户，管理员，开发者三方<br>１．用户：实现用户注册和登录；实现app的详情查看，下载，评分，反馈<br>２．管理员：审核app的上架，下架；控制开发者或用户的账号注销，规范开发者的开发行为，查看系统的整体情况<br>３．开发者：实现开发者注册和登录；提交app(给管理员审核），更新app,查看开发app的评分反馈<br><a id="more"></a></p>
+<h2 id="工具-amp-amp-环境"><a href="#工具-amp-amp-环境" class="headerlink" title="工具&amp;&amp;环境"></a>工具&amp;&amp;环境</h2><p>编辑器：visual studio code1.35.1<br>数据库：mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64)<br>编程语言：python3.6.5<br>系统框架：使用python内置tkinter GUI模块，第三方pymysql模块<br>硬件系统：Linux deepin 15.9.10 </p>
+<h2 id="图形界面设计"><a href="#图形界面设计" class="headerlink" title="图形界面设计"></a>图形界面设计</h2><p>各种语言都有自己的GUI库，Python本身就有不止一个GUI库。而其中tkinter是最简单的，较容易上手。因为之前并没有接触过GUI编程，所以选择了简单的tkinter模块。</p>
+<h4 id="控件函数绑定"><a href="#控件函数绑定" class="headerlink" title="控件函数绑定"></a>控件函数绑定</h4><p>主要使用tkinter中的button ,label entry,menubar组件来实现基本的GUI要求。通过将GUI控件和相关的函数通过bind函数command选项绑定，来实现具体的功能。<br>这种绑定存在一个问题，就是command中的函数不能带参数。这意味着无法为具体的应用设计相应的GUI控件。查了很多资料，后来知道，这里需要使用lambda语句。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t:</span><br><span class="line">    print(i,i[<span class="number">0</span>],type(i[<span class="number">0</span>]))</span><br><span class="line">    <span class="comment"># Button(self,text='下载\更新',command = self.Download).grid(row = x+2,column=4)</span></span><br><span class="line">    <span class="comment"># Button(self,text='下载\更新',command = self.Rating).grid(row = x+2,column=4)</span></span><br><span class="line">    Button(self,text=<span class="string">'评价'</span>,command = <span class="keyword">lambda</span>:self.Download(i[<span class="number">0</span>])).grid(row = x+<span class="number">2</span>,column=<span class="number">6</span>)</span><br><span class="line">    Button(self,text=<span class="string">'评价'</span>,command = <span class="keyword">lambda</span>:self.Rating(i[<span class="number">0</span>])).grid(row = x+<span class="number">2</span>,column=<span class="number">5</span>)</span><br><span class="line">    <span class="comment"># Button(self,text='评论').grid(row = x+2,column=6)</span></span><br><span class="line">    x=x+<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>以上面的代码为例，理想情况是每一个应用有各自的评价按钮，而不是使用全局按钮，然后再输入应用名字，最后输入评论。<br>为了达到以上的目标，故使用lambda表达式来接收参数。</p>
+<h4 id="布局管理器"><a href="#布局管理器" class="headerlink" title="布局管理器"></a>布局管理器</h4><p>tkinter提供了多种布局管理器。我主要使用grid()方法；对于简单的界面，使用pack()。通过定义参数，确定控件的样式和位置。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#grid()布局管理器</span></span><br><span class="line">Label(self,text=<span class="string">'&#123;0&#125;'</span>.format(i[<span class="number">0</span>])).grid(row=x+<span class="number">2</span>,column=<span class="number">0</span>)</span><br><span class="line">Label(self,text=<span class="string">'&#123;0&#125;'</span>.format(i[<span class="number">1</span>])).grid(row=x+<span class="number">2</span>,column=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#pack()布局管理器</span></span><br><span class="line">self.queryPage.pack()  </span><br><span class="line">self.aboutPage.pack_forget()  <span class="comment">#忽略页面</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="交互界面设计"><a href="#交互界面设计" class="headerlink" title="交互界面设计"></a>交互界面设计</h4><p>tkinter提供了一些很方便的控件来进行程序的交互界面设计。</p>
+<ol>
+<li><p>showinfo()</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">showinfo(title=<span class="string">'无记录'</span>, message=<span class="string">'找不到该应用信息！'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>askinteger()</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.developerid =simpledialog.askinteger(title=<span class="string">"提示"</span>,prompt=<span class="string">"请确定您的个人信息，输入您的开发者ID"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>askyesno()</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signal=askyesno(title=<span class="string">"提示"</span>,message=<span class="string">"您是否确定提交评论"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>数据库中的设计元素很大部分是为了使用这个元素而设计的，有点刻意。比如视图，触发器，索引等等。但这些尝试让我对数据库理解的更加深刻，还是简单记录一下。</p>
+<h4 id="触发器设计"><a href="#触发器设计" class="headerlink" title="触发器设计"></a>触发器设计</h4><p>当删除一个开发者时，将删除其开发的应用和涉及到这些应用的评论。<br>第一个触发器<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter $</span><br><span class="line">-&gt;create trigger dev_delete</span><br><span class="line">-&gt;before delete on</span><br><span class="line">-&gt;developer</span><br><span class="line">-&gt;for each row</span><br><span class="line">-&gt;begin</span><br><span class="line">-&gt;delete from insideapp where old.developerid=insideapp.developerid;</span><br><span class="line">-&gt;end$</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line">mysql&gt; delimiter ;</span><br></pre></td></tr></table></figure></p>
+<p>第二个触发器<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter $</span><br><span class="line">-&gt;create trigger insideapp_delete</span><br><span class="line">-&gt;before delete on</span><br><span class="line">-&gt;commenttable</span><br><span class="line">-&gt;for each row</span><br><span class="line">-&gt;begin</span><br><span class="line">-&gt;delete from commenttable where old.insideappid=commenttable.appid;</span><br><span class="line">-&gt;end$</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line">mysql&gt; delimiter ;</span><br></pre></td></tr></table></figure></p>
+<h4 id="数据库存储过程设计"><a href="#数据库存储过程设计" class="headerlink" title="数据库存储过程设计"></a>数据库存储过程设计</h4><p>为了给管理员提供动态的了解系统情况的接口，我想设计一个接口，而不是每次都从表中读取。<br>本来用视图尝试了很多办法，最后也没折腾出来。快要放弃的时候发现存储过程有处理这个问题的能力。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">procedure</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`return_sum`</span>;</span><br><span class="line">DELIMITER $$</span><br><span class="line"><span class="keyword">CREATE</span> DEFINER=<span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">PROCEDURE</span> <span class="string">`return_sum`</span>(<span class="keyword">out</span> sum1 <span class="built_in">int</span>,<span class="keyword">out</span> sum2 <span class="built_in">int</span>,<span class="keyword">out</span> sum3 <span class="built_in">int</span>,<span class="keyword">out</span> sum4 <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">COUNT</span>(*) <span class="keyword">into</span> sum1 <span class="keyword">from</span> insideapp;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> sum2 <span class="keyword">from</span> outsideapp;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> sum3 <span class="keyword">from</span> developer;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">into</span> sum4 <span class="keyword">from</span>  <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">END</span>$$</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure></p>
+<p>使用pymysql模块的对应代码如下(代码给出注释)<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">conn = pymysql.connect(</span><br><span class="line">host=<span class="string">'127.0.0.1'</span>,</span><br><span class="line">port=<span class="number">3306</span>,</span><br><span class="line">user=<span class="string">'root'</span>,</span><br><span class="line">password=<span class="string">'2333'</span>,</span><br><span class="line">database=<span class="string">"appmarket"</span>,</span><br><span class="line">charset=<span class="string">'utf8'</span></span><br><span class="line">)<span class="comment">#连接本地MySQL数据库，获得的conn是一个连接对象</span></span><br><span class="line">cur = conn.cursor()<span class="comment">#由conn获取cursor对象</span></span><br><span class="line"><span class="comment"># cur.execute('call return_sum')</span></span><br><span class="line">t = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">row = cur.callproc(<span class="string">"return_sum"</span>,(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))<span class="comment">#调用return_sum的存储过程</span></span><br><span class="line">effect_row = cur.execute(<span class="string">'select @_return_sum_0,@_return_sum_1,@_return_sum_2,@_return_sum_3'</span>)<span class="comment">#执行sql命令</span></span><br><span class="line">result = cur.fetchone()<span class="comment">#上步命令返回多个值，以数组存储起来</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure></p>
+<p>好了，完</p>
+<p>END ~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/beatles-song/" rel="next" title="Beatles lyrics">
+                <i class="fa fa-chevron-left"></i> Beatles lyrics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg" alt="Cogitates">
+            
+              <p class="site-author-name" itemprop="name">Cogitates</p>
+              <div class="site-description motion-element" itemprop="description">Personal Blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cogitates" title="GitHub &rarr; https://github.com/cogitates" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@gmail.com" title="Gmail &rarr; mailto:weifengzxq@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@qq.com" title="E-Mail &rarr; mailto:weifengzxq@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/m/user/home?id=435631011" title="Netease music &rarr; http://music.163.com/m/user/home?id=435631011" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Netease music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要内容"><span class="nav-number">1.</span> <span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具-amp-amp-环境"><span class="nav-number">2.</span> <span class="nav-text">工具&amp;&amp;环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形界面设计"><span class="nav-number">3.</span> <span class="nav-text">图形界面设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#控件函数绑定"><span class="nav-number">3.0.1.</span> <span class="nav-text">控件函数绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布局管理器"><span class="nav-number">3.0.2.</span> <span class="nav-text">布局管理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交互界面设计"><span class="nav-number">3.0.3.</span> <span class="nav-text">交互界面设计</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">4.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器设计"><span class="nav-number">4.0.1.</span> <span class="nav-text">触发器设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库存储过程设计"><span class="nav-number">4.0.2.</span> <span class="nav-text">数据库存储过程设计</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cogitates</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
