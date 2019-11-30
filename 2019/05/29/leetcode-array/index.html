@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang>
+<html class="theme-next mist use-motion" lang="zh_Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -99,14 +99,14 @@
   <meta name="description" content="Remove Duplicates from Sorted Array Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.Do not allocate extra space for another">
 <meta name="keywords" content="思考,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode题解-数组-part1">
+<meta property="og:title" content="几道Leetcode上面的数组题目">
 <meta property="og:url" content="http://cogitates.github.io/2019/05/29/leetcode-array/index.html">
 <meta property="og:site_name" content="Cogitates&#39; Notes">
 <meta property="og:description" content="Remove Duplicates from Sorted Array Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.Do not allocate extra space for another">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh_Hans">
 <meta property="og:updated_time" content="2019-05-29T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode题解-数组-part1">
+<meta name="twitter:title" content="几道Leetcode上面的数组题目">
 <meta name="twitter:description" content="Remove Duplicates from Sorted Array Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.Do not allocate extra space for another">
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>Leetcode题解-数组-part1 | Cogitates' Notes</title>
+  <title>几道Leetcode上面的数组题目 | Cogitates' Notes</title>
   
 
 
@@ -166,7 +166,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
 
   
   
@@ -197,7 +197,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="تغییر ناوبری">
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -225,7 +225,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>صفحه اصلی</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
 
   </li>
         
@@ -242,7 +242,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>بایگانی</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
         
@@ -259,7 +259,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>برچسب ها</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
 
   </li>
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode题解-数组-part1
+          <h1 class="post-title" itemprop="name headline">几道Leetcode上面的数组题目
 
               
             
@@ -347,14 +347,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">نوشته شده در</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="ایجاد شده: 2019-05-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-29T00:00:00+08:00">2019-05-29</time>
+              <time title="Erstellt: 2019-05-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-29T00:00:00+08:00">2019-05-29</time>
             
 
             
@@ -369,9 +369,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">ویرایش شده در</span>
+                  <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="تغییر یافته: 2019-05-30 00:00:00" itemprop="dateModified" datetime="2019-05-30T00:00:00+08:00">2019-05-30</time>
+                <time title="Geändert am: 2019-05-30 00:00:00" itemprop="dateModified" datetime="2019-05-30T00:00:00+08:00">2019-05-30</time>
               
             
           </span>
@@ -439,34 +439,6 @@
 <p>There are two sorted arrays nums1 and nums2 of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).<br>You may assume nums1 and nums2 cannot be both empty.</p>
 </blockquote>
 <p>c++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.size();</span><br><span class="line">        <span class="keyword">int</span> n = B.size();</span><br><span class="line">        <span class="keyword">int</span> total = m + n;</span><br><span class="line">        <span class="keyword">if</span>(total &amp; <span class="number">0x1</span>) <span class="comment">//total是奇数，偶数</span></span><br><span class="line">            <span class="keyword">return</span> find_kth(A.begin(),m,B.begin(),n,total/<span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> (find_kth(A.begin(),m,B.begin(),n,total / <span class="number">2</span>) <span class="comment">//上位中位数</span></span><br><span class="line">                    + find_kth(A.begin(),m,B.begin(),n,total/<span class="number">2</span> + <span class="number">1</span>)) /<span class="number">2.0</span>;<span class="comment">//下位中位数</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">find_kth</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator A,<span class="keyword">int</span> m, <span class="comment">//找到两个有序数组中第k大的数</span></span></span></span><br><span class="line"><span class="function"><span class="params">                       <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator B,<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(m&gt;n)<span class="keyword">return</span> find_kth(B,n,A,m,k);</span><br><span class="line">        <span class="keyword">if</span>(m==<span class="number">0</span>)<span class="keyword">return</span> *(B+k<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>)<span class="keyword">return</span> min(*A,*B);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//DIVIDE K INTO TWO PARTS</span></span><br><span class="line">        <span class="keyword">int</span> ia = min(k/<span class="number">2</span>,m),ib = k - ia;</span><br><span class="line">        <span class="keyword">if</span>(*(A + ia <span class="number">-1</span>) &lt; *(B + ib - <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">return</span> find_kth(A + ia,m - ia,B,n,k - ia);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (*(A + ia <span class="number">-1</span>) &gt; *(B + ib - <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">return</span> find_kth(A,m,B + ib,n - ib,k - ib);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> A[ia - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Longest-Consecutive-Sequence"><a href="#Longest-Consecutive-Sequence" class="headerlink" title="Longest Consecutive Sequence"></a>Longest Consecutive Sequence</h2><blockquote>
-<p>Given an unsorted array of integers, find the length of the longest consecutive elements sequence.<br>Your algorithm should run in O(n) complexity.</p>
-</blockquote>
-<h3 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h3><p>使用哈希表存储数据，以实现O(n)的查找复杂度</p>
-<p>c++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; used;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:nums) used[i] = <span class="literal">false</span>;<span class="comment">//冒号的意思是迭代容器nums中的所有元素，元素的临时名字就是i</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> longest = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(used[i]) <span class="keyword">continue</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> length = <span class="number">1</span>;</span><br><span class="line">            used[i] = <span class="literal">true</span>;</span><br><span class="line">            <span class="comment">//find()查找函数，若没有找到返回end()</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>;used.find(j)!=used.end();++j)&#123;</span><br><span class="line">                used[j] = <span class="literal">true</span>;</span><br><span class="line">                ++length;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;used.find(j)!=used.end();--j)&#123;</span><br><span class="line">                used[j] = <span class="literal">true</span>;</span><br><span class="line">                ++length;</span><br><span class="line">            &#125;</span><br><span class="line">            longest = max(longest,length);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> longest;</span><br><span class="line">                </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>python<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestConsecutive</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># from sets import Set</span></span><br><span class="line">        </span><br><span class="line">        s = set()</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#Hash all the nums elements</span></span><br><span class="line">        <span class="keyword">for</span> ele <span class="keyword">in</span> nums:</span><br><span class="line">            s.add(ele)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#check each possible sequence from the start</span></span><br><span class="line">        <span class="comment">#then update optimal length</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="comment">#first element </span></span><br><span class="line">            <span class="keyword">if</span>(nums[i]<span class="number">-1</span>) <span class="keyword">not</span> <span class="keyword">in</span> s:</span><br><span class="line">                <span class="comment">#check for the next element in sequence</span></span><br><span class="line">                j = nums[i]</span><br><span class="line">                <span class="keyword">while</span>(j <span class="keyword">in</span> s):</span><br><span class="line">                    j+=<span class="number">1</span></span><br><span class="line">                </span><br><span class="line">                <span class="comment">#update optimal length </span></span><br><span class="line">                ans = max(ans,j-nums[i])</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure></p>
-<h2 id="Two-sum"><a href="#Two-sum" class="headerlink" title="Two sum"></a>Two sum</h2><blockquote>
-<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-</blockquote>
-<h3 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h3><p>使用散列表来使时间复杂度降到O(n)</p>
-<p>c++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;mapping;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size();i++)&#123;</span><br><span class="line">            mapping[nums[i]] = i;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> gap = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span>(mapping.find(gap) != mapping.end() &amp;&amp; mapping[gap] &gt; i)&#123;</span><br><span class="line">                result.push_back(i);</span><br><span class="line">                result.push_back(mapping[gap]);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Three-Sum"><a href="#Three-Sum" class="headerlink" title="Three Sum"></a>Three Sum</h2><blockquote>
-<p>Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0?<br>Find all unique triplets in the array which gives the sum of zero.</p>
-</blockquote>
-<h3 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h3><p>左右夹逼，i指针向右走，k指针向左走，j指针在两者之间试探<br>根据计算的结果，然后调整i，j,k三个指针的位置</p>
-<p>c++</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()&lt;<span class="number">3</span>) <span class="keyword">return</span> result;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">int</span> target = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> last = nums.end();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i = nums.begin();i&lt; last<span class="number">-2</span>;++i)&#123;</span><br><span class="line">            <span class="keyword">auto</span> j =i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; nums.begin()&amp;&amp; *i == *(i<span class="number">-1</span>)) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">auto</span> k= last - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;k)&#123;</span><br><span class="line">                <span class="keyword">if</span>(*i+*j+*k &lt;target)&#123;</span><br><span class="line">                    ++j;</span><br><span class="line">                    <span class="keyword">while</span>(*j==*(j<span class="number">-1</span>)&amp;&amp;j&lt;k)++j;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(*i+*j+*k &gt; target)&#123;</span><br><span class="line">                    --k;</span><br><span class="line">                    <span class="keyword">while</span>(*k == *(k+<span class="number">1</span>)&amp;&amp;j&lt;k)--k;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        result.push_back(&#123;*i,*j,*k&#125;);</span><br><span class="line">                        ++j;</span><br><span class="line">                        --k;</span><br><span class="line">                        <span class="keyword">while</span>(*j == *(j<span class="number">-1</span>) &amp;&amp; *k==*(k+<span class="number">1</span>)&amp;&amp;j&lt;k) ++j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="3Sum-Closest"><a href="#3Sum-Closest" class="headerlink" title="3Sum Closest"></a>3Sum Closest</h2><blockquote>
-<p>Given an array S of n integers, find three integers in S such that the sum is closest to a given number,<br>target. Return the sum of the three integers. You may assume that each input would have exactly one solution.<br>For example, given array S = {-1 2 1 -4}, and target = 1.<br>The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> min_gap = INT_MAX; <span class="comment">//用于存储三数之和和目标的差距</span></span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(),nums.end());<span class="comment">//排序</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> a = nums.begin(); a != prev(nums.end(),<span class="number">2</span>);++a)&#123;</span><br><span class="line">            <span class="keyword">auto</span> b = next(a);</span><br><span class="line">            <span class="keyword">auto</span> c = prev(nums.end());</span><br><span class="line">            <span class="keyword">while</span>(b &lt; c)&#123;</span><br><span class="line">                <span class="keyword">const</span> <span class="keyword">int</span> sum = *a + *b + *c;</span><br><span class="line">                <span class="keyword">const</span> <span class="keyword">int</span> gap = <span class="built_in">abs</span>(sum - target);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(gap &lt; min_gap)&#123;</span><br><span class="line">                    result = sum;</span><br><span class="line">                    min_gap = gap;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(sum &lt; target) ++b;</span><br><span class="line">                <span class="keyword">else</span>  --c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="4Sum"><a href="#4Sum" class="headerlink" title="4Sum"></a>4Sum</h2><blockquote>
-<p>Given an array nums of n integers and an integer target,<br>are there elements a, b, c, and d in nums such that a + b + c + d = target?<br>Find all unique quadruplets in the array which gives the sum of target.<br>Note:<br>The solution set must not contain duplicate quadruplets.</p>
-</blockquote>
-<h3 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h3><p>使用hashmap缓存两个数的和，但是这种解法实际运行速度较慢</p>
-<p>c++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; fourSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()&lt;<span class="number">4</span>) <span class="keyword">return</span> result;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="comment">//使用一个hashmap缓存两个数的和</span></span><br><span class="line">        <span class="built_in">unordered_multimap</span>&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; cache;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i+<span class="number">1</span>&lt;nums.size();++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;nums.size();++j)</span><br><span class="line">                cache.insert(make_pair(nums[i]+nums[j],make_pair(i,j)));</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> i=cache.begin();i!=cache.end();++i)&#123;</span><br><span class="line">                <span class="keyword">int</span> x = target - i-&gt;first;</span><br><span class="line">                <span class="keyword">auto</span> range = cache.equal_range(x);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> j=range.first;j!=range.second;++j)&#123;</span><br><span class="line">                    <span class="keyword">auto</span> a = i-&gt;second.first;</span><br><span class="line">                    <span class="keyword">auto</span> b = i-&gt;second.second;</span><br><span class="line">                    <span class="keyword">auto</span> c = j-&gt;second.first;</span><br><span class="line">                    <span class="keyword">auto</span> d = j-&gt;second.second;</span><br><span class="line">                    <span class="keyword">if</span>(a != c &amp;&amp; a!=d &amp;&amp; b!=c &amp;&amp; b!=d)&#123;</span><br><span class="line">                        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec = &#123;nums[a],nums[b],nums[c],nums[d]&#125;;</span><br><span class="line">                        sort(vec.begin(),vec.end());</span><br><span class="line">                        result.push_back(vec);</span><br><span class="line">                    &#125;</span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                        </span><br><span class="line">        &#125;</span><br><span class="line">                sort(result.begin(),result.end());</span><br><span class="line">                result.erase(unique(result.begin(),result.end()),result.end());</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="思路-8"><a href="#思路-8" class="headerlink" title="思路"></a>思路</h3><p>先排序，然后左右夹逼</p>
-<p>c++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; fourSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()&lt;<span class="number">4</span>) <span class="keyword">return</span> result;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> last = nums.end();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> a = nums.begin();a &lt; prev(last,<span class="number">3</span>);++a)  &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> b = next(a);b &lt; prev(last,<span class="number">2</span>);++b)&#123;</span><br><span class="line">                <span class="keyword">auto</span> c = next(b);</span><br><span class="line">                <span class="keyword">auto</span> d = prev(last);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">while</span>( c &lt; d)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(*a + *b + *c + *d &lt; target)&#123;</span><br><span class="line">                        ++c;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(*a + *b + *c + *d &gt;target)&#123;</span><br><span class="line">                        --d;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        result.push_back(&#123;*a,*b,*c,*d&#125;);</span><br><span class="line">                        ++c;</span><br><span class="line">                        --d;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(result.begin(),result.end());</span><br><span class="line">        result.erase(unique(result.begin(),result.end()),result.end());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>END~</p>
 
       
@@ -516,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/18/beatles-song/" rel="prev" title="Beatles Lyrics">
-                Beatles Lyrics <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/18/beatles-song/" rel="prev" title="Beatles的两首歌词">
+                Beatles的两首歌词 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,10 +536,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            فهرست مطالب
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            نمای کلی
+            Übersicht
           </li>
         </ul>
       
@@ -589,8 +561,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">پست ها</span>
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -634,8 +606,22 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">برجسب ها</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">schlagwörter</span>
                   </a>
                 </div>
               
@@ -720,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.</span> <span class="nav-text">Remove Duplicates from Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array-II"><span class="nav-number">2.</span> <span class="nav-text">Remove Duplicates from Sorted Array II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-in-rotated-sorted-array"><span class="nav-number">3.</span> <span class="nav-text">Search in rotated sorted array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-in-Rotated-Sorted-Array-II"><span class="nav-number">4.</span> <span class="nav-text">Search in Rotated Sorted Array II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">4.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充—关于二分搜索的标准代码"><span class="nav-number">4.2.</span> <span class="nav-text">补充—关于二分搜索的标准代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Median-of-Two-Sorted-Arrays"><span class="nav-number">5.</span> <span class="nav-text">Median of Two Sorted Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Consecutive-Sequence"><span class="nav-number">6.</span> <span class="nav-text">Longest Consecutive Sequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-4"><span class="nav-number">6.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-sum"><span class="nav-number">7.</span> <span class="nav-text">Two sum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-5"><span class="nav-number">7.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-Sum"><span class="nav-number">8.</span> <span class="nav-text">Three Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-6"><span class="nav-number">8.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3Sum-Closest"><span class="nav-number">9.</span> <span class="nav-text">3Sum Closest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4Sum"><span class="nav-number">10.</span> <span class="nav-text">4Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-7"><span class="nav-number">10.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-8"><span class="nav-number">10.2.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array"><span class="nav-number">1.</span> <span class="nav-text">Remove Duplicates from Sorted Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-Duplicates-from-Sorted-Array-II"><span class="nav-number">2.</span> <span class="nav-text">Remove Duplicates from Sorted Array II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-in-rotated-sorted-array"><span class="nav-number">3.</span> <span class="nav-text">Search in rotated sorted array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-2"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-in-Rotated-Sorted-Array-II"><span class="nav-number">4.</span> <span class="nav-text">Search in Rotated Sorted Array II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-3"><span class="nav-number">4.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充—关于二分搜索的标准代码"><span class="nav-number">4.2.</span> <span class="nav-text">补充—关于二分搜索的标准代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Median-of-Two-Sorted-Arrays"><span class="nav-number">5.</span> <span class="nav-text">Median of Two Sorted Arrays</span></a></li></ol></div>
             
 
           </div>
@@ -753,7 +739,7 @@
 </div>
 
 
-  <div class="powered-by">قدرت گرفته از <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -761,7 +747,7 @@
 
 
 
-  <div class="theme-info">پوسته – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
 
 
 

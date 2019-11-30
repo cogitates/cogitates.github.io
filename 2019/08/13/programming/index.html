@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh_Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="状态机计算机的本质是一个状态机，内存里存储的所有数据构成了当前的状态，CPU只能利用当前的状态计算出下一个状态。 你企图使用计算机解决一个问题是，其实就是在思考如何将这个问题表达成状态（用哪些变量存储哪些数据）以及如何在状态中转移（怎样根据一些变量计算出另一些变量）。所以所谓的空间复杂度就是为了支持你的计算所必需存储的状态最多有多少，所谓时间复杂度就是从初始状态到达最终状态中间需要多少步！">
+<meta name="keywords" content="思考,算法,编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题总结">
+<meta property="og:url" content="http://cogitates.github.io/2019/08/13/programming/index.html">
+<meta property="og:site_name" content="Cogitates&#39; Notes">
+<meta property="og:description" content="状态机计算机的本质是一个状态机，内存里存储的所有数据构成了当前的状态，CPU只能利用当前的状态计算出下一个状态。 你企图使用计算机解决一个问题是，其实就是在思考如何将这个问题表达成状态（用哪些变量存储哪些数据）以及如何在状态中转移（怎样根据一些变量计算出另一些变量）。所以所谓的空间复杂度就是为了支持你的计算所必需存储的状态最多有多少，所谓时间复杂度就是从初始状态到达最终状态中间需要多少步！">
+<meta property="og:locale" content="zh_Hans">
+<meta property="og:updated_time" content="2019-08-06T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="刷题总结">
+<meta name="twitter:description" content="状态机计算机的本质是一个状态机，内存里存储的所有数据构成了当前的状态，CPU只能利用当前的状态计算出下一个状态。 你企图使用计算机解决一个问题是，其实就是在思考如何将这个问题表达成状态（用哪些变量存储哪些数据）以及如何在状态中转移（怎样根据一些变量计算出另一些变量）。所以所谓的空间复杂度就是为了支持你的计算所必需存储的状态最多有多少，所谓时间复杂度就是从初始状态到达最终状态中间需要多少步！">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://cogitates.github.io/2019/08/13/programming/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>刷题总结 | Cogitates' Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cogitates' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay hungry,stay folish.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cogitates.github.io/2019/08/13/programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cogitates">
+      <meta itemprop="description" content="Personal Blog">
+      <meta itemprop="image" content="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cogitates' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">刷题总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-13T00:00:00+08:00">2019-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-08-07 00:00:00" itemprop="dateModified" datetime="2019-08-07T00:00:00+08:00">2019-08-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><p>计算机的本质是一个状态机，内存里存储的所有数据构成了当前的状态，CPU只能利用当前的状态计算出下一个状态。</p>
+<p>你企图使用计算机解决一个问题是，其实就是在思考如何将这个问题表达成状态（用哪些变量存储哪些数据）以及如何在状态中转移（怎样根据一些变量计算出另一些变量）。所以所谓的空间复杂度就是为了支持你的计算所必需存储的状态最多有多少，所谓时间复杂度就是从初始状态到达最终状态中间需要多少步！</p>
+<a id="more"></a>
+<p>状态转移衔接两个不同的阶段，不同的阶段通过转换来实现。</p>
+<h3 id="关心输入"><a href="#关心输入" class="headerlink" title="关心输入"></a>关心输入</h3><p>输入提供了问题的规模和原始数据，也就是问题的状态表达，很多时候，要对输入做必要的限制和约束，处理极端情况。</p>
+<h3 id="问题规模思考"><a href="#问题规模思考" class="headerlink" title="问题规模思考"></a>问题规模思考</h3><p>问题规模越大，程序就越复杂。编程很重要的一点就是要不断缩小问题规模。这也是指导动态规划，分治法，贪心等算法思想的核心思想。</p>
+<h3 id="信息的充分利用"><a href="#信息的充分利用" class="headerlink" title="信息的充分利用"></a>信息的充分利用</h3><p>在解决问题的过程中，会有很多信息产生，要充分利用已经产生的信息来减少对未产生信息的计算。典型的算法思想：回溯法&amp;&amp;分支限界法。二者本质上都是一致的，都是充分利用已经计算过的信息，来实现对树的剪枝。回溯法利用回溯过的线路中的最优值对树的其他线路进行剪枝；分支限界法则是充分利用遍历过的树的上层信息来实现对树的下层信息的剪枝。</p>
+<h3 id="深搜和广搜"><a href="#深搜和广搜" class="headerlink" title="深搜和广搜"></a>深搜和广搜</h3><p>绝大多数问题都能通过bfs,dfs解决。因为二者的本质是遍历解空间。</p>
+<p>要把握状态的概念，也就是不同的节点在程序不同的时期有着不同的状态，对于某些具有特定状态并且程序执行的后面要用到的节点，将之放入特定容器。</p>
+<p>在图搜索中，节点的状态有很多种(节点的状态此时主要根据操作来定义)，比如：未被访问的节点，被访问但是后续仍要用于寻找相邻节点的点，被访问并且后续不会被用到的点。其中，第二类点仍要使用的必要，因此将之放入特定容器，也就是队列或者栈。</p>
+<p>注意，深搜是通过使用栈来保证实现回溯的:也就是最先访问的点，最后处理其邻接关系。<br>广搜是通过使用队列来保证实现回溯的:也就是最先访问的点，最先处理其邻接关系。</p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>动态规划是一种算法设计技巧。动态规划的本质是通过建立dp数组，记录历史数据，来避免重复计算，以提高效率。递归的自上而下的暴力解法–&gt;带备忘录的递归解法–&gt;非递归的自下而上的动态规划解法。</p>
+<h3 id="递归思想"><a href="#递归思想" class="headerlink" title="递归思想"></a>递归思想</h3><p>关于递归，递归的基本思想是某个函数直接或者间接地调用自身，这样就把原问题的求解转换成许多性质相同但是规模更小的子问题。</p>
+<p>我们只需要关注如何把原问题划分成符合条件的子问题，而不用去研究这个子问题是如何被解决的。</p>
+<p>递归代码最重要的两个特征：<strong>结束条件和自我调用。</strong> </p>
+<p><strong>明白一个函数的作用并相信他能完成这个任务，千万不要试图从细节上分析递归代码，否则很容易陷入无穷的细节中搞得疲惫不堪，人脑能压几个栈啊？</strong> </p>
+<p>还是那句话，明白每个递归函数能做的事，并相信他们能够完成。</p>
+<h3 id="程序-数据结构-算法"><a href="#程序-数据结构-算法" class="headerlink" title="程序 = 数据结构 + 算法"></a>程序 = 数据结构 + 算法</h3><p>这个公式不只是用来说明二者的重要性的，其本质如下：</p>
+<p>数据结构 + 算法 + 编程思想</p>
+<p>基本存在 + 相互作用 + 演化逻辑</p>
+<p>数据结构保存信息，算法处理信息，数据结构保存状态，算法用于状态转化</p>
+<p>数据结构的状态决定算法，算法改变数据结构的状态，二者的关系是相互影响，相互依赖。</p>
+<p>数据结构体现的是内存的分配，而算法体现的是cpu的使用策略。</p>
+<p>数据结构可能有的特质有：有序；独特；检索（key&amp;&amp;value)</p>
+<h3 id="理解查找"><a href="#理解查找" class="headerlink" title="理解查找"></a>理解查找</h3><p>查找是增删改查的基础，而查找的前提是要在数据结构中建立键值对之间的映射关系，查找的过程是利用键和值之间的相互映射，完成查找。</p>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>每个阶段只有一个状态-&gt;递推；</p>
+<p>每个阶段的最优状态都是由上一个阶段的最优状态得到的-&gt;贪心；</p>
+<p>每个阶段的最优状态是由之前所有阶段的状态的组合得到的-&gt;搜索；</p>
+<p>每个阶段的最优状态可以从之前某个阶段的某个或某些状态直接得到而不管之前这个状态是如何得到的-&gt;动态规划。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/思考/" rel="tag"># 思考</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/26/gpu-in-linux/" rel="next" title="Linux 显卡问题">
+                <i class="fa fa-chevron-left"></i> Linux 显卡问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/17/dfs-bfs/" rel="prev" title="深度搜索和广度搜索">
+                深度搜索和广度搜索 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg" alt="Cogitates">
+            
+              <p class="site-author-name" itemprop="name">Cogitates</p>
+              <div class="site-description motion-element" itemprop="description">Personal Blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cogitates" title="GitHub &rarr; https://github.com/cogitates" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@gmail.com" title="Gmail &rarr; mailto:weifengzxq@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@qq.com" title="E-Mail &rarr; mailto:weifengzxq@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/m/user/home?id=435631011" title="Netease music &rarr; http://music.163.com/m/user/home?id=435631011" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Netease music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态机"><span class="nav-number">1.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关心输入"><span class="nav-number">2.</span> <span class="nav-text">关心输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题规模思考"><span class="nav-number">3.</span> <span class="nav-text">问题规模思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息的充分利用"><span class="nav-number">4.</span> <span class="nav-text">信息的充分利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深搜和广搜"><span class="nav-number">5.</span> <span class="nav-text">深搜和广搜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">6.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归思想"><span class="nav-number">7.</span> <span class="nav-text">递归思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序-数据结构-算法"><span class="nav-number">8.</span> <span class="nav-text">程序 = 数据结构 + 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解查找"><span class="nav-number">9.</span> <span class="nav-text">理解查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">10.</span> <span class="nav-text">算法思想</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cogitates</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

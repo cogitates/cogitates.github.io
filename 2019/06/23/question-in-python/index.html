@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh_Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="-&amp;gt;的作用1234sync def fetch(self, url: str, keys: object, repeat: int) -&amp;gt; (int, object:    dosomething()    return None  #-&amp;gt; 就是为了告诉用户具体函数参数和参数的类型">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中几个疑惑">
+<meta property="og:url" content="http://cogitates.github.io/2019/06/23/question-in-python/index.html">
+<meta property="og:site_name" content="Cogitates&#39; Notes">
+<meta property="og:description" content="-&amp;gt;的作用1234sync def fetch(self, url: str, keys: object, repeat: int) -&amp;gt; (int, object:    dosomething()    return None  #-&amp;gt; 就是为了告诉用户具体函数参数和参数的类型">
+<meta property="og:locale" content="zh_Hans">
+<meta property="og:image" content="http://img2.foofish.net/iterable-vs-iterator.png">
+<meta property="og:updated_time" content="2019-06-22T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中几个疑惑">
+<meta name="twitter:description" content="-&amp;gt;的作用1234sync def fetch(self, url: str, keys: object, repeat: int) -&amp;gt; (int, object:    dosomething()    return None  #-&amp;gt; 就是为了告诉用户具体函数参数和参数的类型">
+<meta name="twitter:image" content="http://img2.foofish.net/iterable-vs-iterator.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://cogitates.github.io/2019/06/23/question-in-python/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python中几个疑惑 | Cogitates' Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cogitates' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay hungry,stay folish.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cogitates.github.io/2019/06/23/question-in-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cogitates">
+      <meta itemprop="description" content="Personal Blog">
+      <meta itemprop="image" content="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cogitates' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python中几个疑惑
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-06-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-23T00:00:00+08:00">2019-06-23</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="gt-的作用"><a href="#gt-的作用" class="headerlink" title="-&gt;的作用"></a>-&gt;的作用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sync <span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">(self, url: str, keys: object, repeat: int)</span> -&gt; (int, object:</span></span><br><span class="line">    dosomething()</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span>  </span><br><span class="line"><span class="comment">#-&gt; 就是为了告诉用户具体函数参数和参数的类型</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<h3 id="Iterable与Iterator介绍"><a href="#Iterable与Iterator介绍" class="headerlink" title="Iterable与Iterator介绍"></a>Iterable与Iterator介绍</h3><p><img src="http://img2.foofish.net/iterable-vs-iterator.png" alt="iterable和iterator"></p>
+<p>(1)iterable:具体应该叫做可迭代对象。他的特点其实就是我的序列的大小长度已经确定了(list,tuple,dict,string等)。他遵循可迭代的协议。</p>
+<p>可迭代协议:</p>
+<ol>
+<li>含<strong>iter</strong>()方法。且可迭代对象中的<strong>iter</strong>()方法返回的是一个对应的迭代器。(如list对应的迭代器就是list_iterator)</li>
+</ol>
+<p>(2)iterator:具体应该叫做迭代器的对象。他的特点就是他不知道要执行多少次，所以可以理解不知道有多少个元素，每调用一次<strong>next</strong>()方法，就会往下走一步，当然是用<strong>next</strong>()方法只能往下走，不会回退。是惰性的。这样我可以存很大很大的数据，即使是整个自然数，也可以很轻松的用迭代器来表示出来。他满足的是迭代器协议。</p>
+<p>迭代器协议:</p>
+<ol>
+<li>含<strong>iter</strong>()方法。且方法返回的Iterator对象本身</li>
+<li>含<strong>next</strong>()方法，每当<strong>next</strong>()方法被调用，返回下一个值，直到没有值可以访问，这个时候会抛出stopinteration的异常。</li>
+</ol>
+<p>2.iterable与Iterator的关系</p>
+<blockquote>
+<p>从这里可以看出Iterable继承自object, Iterator继承自Iterable。</p>
+</blockquote>
+<hr>
+<h3 id="以斐波那契数列数列为例"><a href="#以斐波那契数列数列为例" class="headerlink" title="以斐波那契数列数列为例"></a>以斐波那契数列数列为例</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fib</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.prev = <span class="number">0</span></span><br><span class="line">        self.curr = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        value = self.curr</span><br><span class="line">        self.curr += self.prev</span><br><span class="line">        self.prev = value</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = Fib()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(islice(f, <span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">21</span>, <span class="number">34</span>, <span class="number">55</span>]</span><br></pre></td></tr></table></figure>
+<p>Fib既是一个可迭代对象（因为它实现了<strong>iter</strong>方法），又是一个迭代器（因为实现了<strong>next</strong>方法）。实例变量prev和curr用户维护迭代器内部的状态。每次调用next()方法的时候做两件事：<br>为下一次调用next()方法修改状态<br>为当前这次调用生成返回结果<br>迭代器就像一个懒加载的工厂，等到有人需要的时候才给它生成值返回，没调用的时候就处于休眠状态等待下一次调用。</p>
+<hr>
+<h3 id="生成器表达式和列表推导式"><a href="#生成器表达式和列表推导式" class="headerlink" title="生成器表达式和列表推导式"></a>生成器表达式和列表推导式</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>g = (x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(g)</span><br><span class="line">&lt;type <span class="string">'generator'</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = [x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(l)</span><br><span class="line">&lt;type <span class="string">'list'</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>note:</p>
+<ol>
+<li>生成器是(),列表推导式是[]</li>
+<li>生成器表达式返回生成器对象，列表推导式返回列表兑现</li>
+</ol>
+<hr>
+<h3 id="yield-关键字"><a href="#yield-关键字" class="headerlink" title="yield 关键字"></a>yield 关键字</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fab</span><span class="params">(object)</span>:</span> </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max)</span>:</span> </span><br><span class="line">       self.max = max </span><br><span class="line">       self.n, self.a, self.b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span> </span><br><span class="line">       <span class="keyword">return</span> self </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span> </span><br><span class="line">       <span class="keyword">if</span> self.n &lt; self.max: </span><br><span class="line">           r = self.b </span><br><span class="line">           self.a, self.b = self.b, self.a + self.b </span><br><span class="line">           self.n = self.n + <span class="number">1</span> </span><br><span class="line">           <span class="keyword">return</span> r </span><br><span class="line">       <span class="keyword">raise</span> StopIteration()</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(max)</span>:</span> </span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> </span><br><span class="line">    <span class="keyword">while</span> n &lt; max: </span><br><span class="line">        <span class="keyword">yield</span> b </span><br><span class="line">        <span class="comment"># print b </span></span><br><span class="line">        a, b = b, a + b </span><br><span class="line">        n = n + <span class="number">1</span> </span><br><span class="line">t = fab(<span class="number">45</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<p><strong><em>注意</em></strong><br>yield x,y会返回两个迭代器（按照指针理解），这两个迭代器可以分别迭代x,y，</p>
+<p>迭代器的具体使用方法是放在for循环中</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> p(某一轮迭代中，迭代器的具体值) <span class="keyword">in</span> 迭代器:</span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
+<p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。</p>
+<p>return返回的是具体的数值或者函数，而yield返回的是一个生成器对象(生成器的实例化)<br>可以简单理解为一个迭代器的某一部分，yield是惰性的，内存占用小,这个生成器对象每次被迭代(也就是被调用next函数时，会初始化迭代器中的指定元素，并且为下一个元素的迭代做准备工作)</p>
+<hr>
+<h3 id="python-self"><a href="#python-self" class="headerlink" title="python self"></a>python self</h3><p>假如你有一个类称为MyClass和这个类的一个实例MyObject。</p>
+<p>当你调用这个对象的方法MyObject.method(arg1, arg2)的时候，这会由Python自动转为MyClass.method(MyObject, arg1, arg2).</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/beatles-song/" rel="next" title="Beatles的两首歌词">
+                <i class="fa fa-chevron-left"></i> Beatles的两首歌词
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/27/leetcode-array-2/" rel="prev" title="几道Leetcode上面的数组题目">
+                几道Leetcode上面的数组题目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg" alt="Cogitates">
+            
+              <p class="site-author-name" itemprop="name">Cogitates</p>
+              <div class="site-description motion-element" itemprop="description">Personal Blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cogitates" title="GitHub &rarr; https://github.com/cogitates" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@gmail.com" title="Gmail &rarr; mailto:weifengzxq@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@qq.com" title="E-Mail &rarr; mailto:weifengzxq@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/m/user/home?id=435631011" title="Netease music &rarr; http://music.163.com/m/user/home?id=435631011" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Netease music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-的作用"><span class="nav-number">1.</span> <span class="nav-text">-&gt;的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterable与Iterator介绍"><span class="nav-number">2.</span> <span class="nav-text">Iterable与Iterator介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以斐波那契数列数列为例"><span class="nav-number">3.</span> <span class="nav-text">以斐波那契数列数列为例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器表达式和列表推导式"><span class="nav-number">4.</span> <span class="nav-text">生成器表达式和列表推导式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield-关键字"><span class="nav-number">5.</span> <span class="nav-text">yield 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-self"><span class="nav-number">6.</span> <span class="nav-text">python self</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cogitates</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

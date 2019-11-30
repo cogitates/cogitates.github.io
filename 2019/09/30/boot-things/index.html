@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh_Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="BIOS一律指传统BIOS， UEFI BIOS一律称呼为UEFI。 UEFI下的BIOS设置，一律称为UEFI设置。">
+<meta name="keywords" content="操作系统,boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BIOS和UEFI的启动项">
+<meta property="og:url" content="http://cogitates.github.io/2019/09/30/boot-things/index.html">
+<meta property="og:site_name" content="Cogitates&#39; Notes">
+<meta property="og:description" content="BIOS一律指传统BIOS， UEFI BIOS一律称呼为UEFI。 UEFI下的BIOS设置，一律称为UEFI设置。">
+<meta property="og:locale" content="zh_Hans">
+<meta property="og:image" content="http://cogitates.github.io/images/windowsBoot.jpg">
+<meta property="og:image" content="http://cogitates.github.io/images/uefi.jpg">
+<meta property="og:updated_time" content="2019-09-29T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BIOS和UEFI的启动项">
+<meta name="twitter:description" content="BIOS一律指传统BIOS， UEFI BIOS一律称呼为UEFI。 UEFI下的BIOS设置，一律称为UEFI设置。">
+<meta name="twitter:image" content="http://cogitates.github.io/images/windowsBoot.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://cogitates.github.io/2019/09/30/boot-things/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>BIOS和UEFI的启动项 | Cogitates' Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cogitates' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay hungry,stay folish.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Schlagwörter</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cogitates.github.io/2019/09/30/boot-things/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cogitates">
+      <meta itemprop="description" content="Personal Blog">
+      <meta itemprop="image" content="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cogitates' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BIOS和UEFI的启动项
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-09-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-30T00:00:00+08:00">2019-09-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>BIOS一律指传统BIOS，</li>
+<li>UEFI BIOS一律称呼为UEFI。</li>
+<li>UEFI下的BIOS设置，一律称为UEFI设置。</li>
+</ul>
+<a id="more"></a>
+<p><strong>传统BIOS：</strong></p>
+<p><strong>一句话概括：BIOS只认识设备，不认识分区、不认识文件。</strong></p>
+<blockquote>
+<p>BIOS启动的时候，按照CMOS设置里的顺序，挨个存储设备看：（此处不讨论PXE和光盘）<br>这个存储设备的前512字节是不是以0x55 0xAA结尾？<br> 不是，那就跳过。找下一个设备。<br> 是的话，嗯，这个磁盘可以启动，加载这512字节里的代码，然后执行。<br>执行之后，后面的事，几乎就跟BIOS没啥关系了。<br>至于后面启动什么系统，取决于这512字节里存了谁家的代码。这个代码是各家的系统安装程序写进去的，目的是启动自家系统。</p>
+<p>比如你装（或者重装）了Windows，这里面就变成了Windows的启动代码。<br>比如你装（或者重装）了Linux，这里面就会变成Grub的启动代码。<br>顺便这512字节包含了MBR分区表的信息。但是有人可能注意到，上面半句没提“系统装在哪个分区上了”，硬盘有几个分区。</p>
+<p>其实BIOS并不认识分区表。哪怕磁盘上没有分区表，没分过区，只要前512字节有0x55 0xAA的结尾，有合适的引导代码，也是能启动的。</p>
+</blockquote>
+<p><strong>UEFI</strong>：</p>
+<p><strong>一句话概括，UEFI认识设备，还认识设备ROM，还认识分区表、认识文件系统以及文件。</strong></p>
+<blockquote>
+<p>UEFI启动的时候，经过一系列初始化（SEC、CAR、DXE什么的，SEC、CAR你们不需要懂。下一节里会说DXE阶段是干嘛的）<br>然后按照设置里的顺序，找启动项。启动项分两种，设备启动项和文件启动项：<br>  ·文件启动项，大约记录的是某个磁盘的某个分区的某个路径下的某个文件。对于文件启动项，固件会直接加载这个EFI文件，并执行。类似于DOS下你敲了个win.com就执行了Windows 3.2/95/98的启动。文件不存在则失败。<br>  ·<strong>设备启动项，大约记录的就是“某个U盘”、“某个硬盘”。（此处只讨论U盘、硬盘）对于设备启动项，UEFI标准规定了默认的路径“\EFI\Boot\bootX64.efi”。UEFI会加载磁盘上的这个文件。文件不存在则失败。</strong></p>
+</blockquote>
+<p>UEFI启动后，进入了DXE阶段，就开始加载设备驱动，然后UEFI就会有设备列表了。 对于其中的磁盘，UEFI会加载对应的驱动解析其中的分区表（GPT和MBR）。然后UEFI就会有所有分区的列表了。然后UEFI就会用内置的文件系统驱动，解析每个分区。然后UEFI就会认识分区里的文件了。比如“\EFI\Boot\bootX64.efi”。</p>
+<p>至于这个EFI文件会干嘛，主板是不管的。 但是随着Windows8.x，以及UEFI标准2.x，推出了一个叫做SecureBoot的功能。开了SecureBoot之后，主板会验证即将加载的efi文件的签名，如果开发者不是受信任的开发者，就会拒绝加载。 比如CloverX64.efi就好像没有签名。</p>
+<blockquote>
+<p>一个磁盘分区，要格式化之后，才能往里存文件，格式化的时候，又能选择不同的文件系统。 比如Win10可以选FAT32、NTFS、exFAT、ReFS几种，Linux可以选ext2、ext3、ext4、FAT32等，macOS可以选FAT32、HFS+、APFS、exFAT几种。</p>
+</blockquote>
+<h3 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h3><ol>
+<li>其实每个操作系统，都会有文件系统驱动，然后才能读取某种文件系统。 比如Windows带了上述四种文件系统等驱动，Linux带了FAT32、ext等文件系统等驱动，macOS带了上述四种驱动以及NTFS等只读驱动。 </li>
+<li>设备也是一样的。 原版的WinXP只带了IDE驱动，没有SATA驱动；原版Win7只带了IDE和SATA驱动，没带NVMe驱动；Win8/Win10则带了IDE/SATA和NVMe三种驱动；macOS10.12带了SATA驱动以及苹果专用NVMe磁盘的驱动；macOS10.13带了SATA和标准NVMe驱动。</li>
+</ol>
+<p>UEFI作为一个模糊了固件和操作系统界限的东西，作为一个设计之初就考虑到了扩展性的东西，它也是有驱动程序的。启动过程中的DXE阶段，全称叫Driver eXecution Environment，就是加载驱动用的。</p>
+<p>首先各种PCI-E的设备，比如显卡，比如PCI-E的NVMe固态硬盘，都有固件。<br>其中支持UEFI的设备，比如10系列的Nvidia显卡，固件里就会有对应的UEFI的驱动。</p>
+<p>作为UEFI标准里，钦定的文件系统，FAT32.efi是每个主板都会带的。所有UEFI的主板都认识FAT32分区。这就是UEFI的Windows安装盘为啥非得是FAT32的。 除此之外，苹果的主板还会支持hfs分区。如果某天Linus Torvalds推出了主板，我猜这主板一定会带EXT4.efi，哈哈哈哈哈。</p>
+<h3 id="EFI系统分区"><a href="#EFI系统分区" class="headerlink" title="EFI系统分区"></a>EFI系统分区</h3><p>UEFI规范里，在GPT分区表的基础上，规定了一个EFI系统分区（EFI System Partition，ESP），ESP要格式化成FAT32，EFI启动文件要放在“\EFI\&lt;厂商&gt;”文件夹下面。</p>
+<p>比如Windows的UEFI启动文件，都在“\EFI\Microsoft”下面。<br>比如Clover的东西，全都放在“\EFI\Clover”下面。</p>
+<p>但是Apple比较特殊，它的主板直接去HFS/APFS分区找启动文件。然而即便如此，Mac的ESP里还是会有一堆Apple的文件。</p>
+<p>这一节的最后，再说说“\EFI\Boot”这个文件夹。这个文件夹，放谁家的程序都行。无论是“\EFI\Microsoft\Boot\Bootmgfw.efi”，还是“\EFI\Clover\CloverX64.efi”，只要放到“\EFI\Boot”下并且改名“bootX64.efi”，就能在没添加文件启动项的情况下，默认加载对应的系统。</p>
+<h3 id="Windows-8-8-1-10在UEFI和BIOS下，各种启动文件的顺序"><a href="#Windows-8-8-1-10在UEFI和BIOS下，各种启动文件的顺序" class="headerlink" title="Windows 8/8.1/10在UEFI和BIOS下，各种启动文件的顺序"></a>Windows 8/8.1/10在UEFI和BIOS下，各种启动文件的顺序</h3><p><img src="/images/windowsBoot.jpg" alt="windowsBoot"></p>
+<p>按照前文说的，<strong>BIOS加载某个磁盘MBR</strong>的启动代码，这里特指Windows的引导代码，这段代码会查找活动分区（BIOS不认识活动分区，但这段代码认识活动分区）的位置，加载并执行<strong>活动分区的PBR</strong>（另一段引导程序）。 Windows的PBR认识FAT32和NTFS两种分区，找到<strong>分区根目录的bootmgr文件</strong>，加载、执行bootmgr。 </p>
+<p>bootmgr没了MBR和PBR的大小限制，可以做更多的事。它会加载并分析BCD启动项存储。而且bootmgr可以跨越磁盘读取文件了。所以无论你有几个磁盘，你在多少块磁盘上装了Windows，一个电脑只需要一个bootmgr就行了。</p>
+<p>bootmgr会去加载某磁盘<strong>某NTFS分区的“\Windows\System32\WinLoad.exe”</strong>，后面启动Windows的事就由WinLoad.exe来完成了。</p>
+<p><img src="/images/uefi.jpg" alt="EFI启动盘和Windows启动盘"></p>
+<p>根据前文说的，UEFI启动项分为文件启动项和设备启动项。</p>
+<p>通常情况：主板UEFI初始化，然后找到了默认启动项“Windows Boot Manager”。里面写了bootmgfw.efi的位置。固件加载bootmgfw.efi。bootmgfw.efi根据BCD启动项存储，找到装Windows的磁盘的具体分区，加载其中的WinLoad.efi。由WinLoad.efi完成剩下的启动工作。</p>
+<p>其中的虚线，根上面的一样，意思是，Windows启动盘和EFI启动盘，可以是一个硬盘，也可以是不同的硬盘。所以对于UEFI来说，启动盘是bootmgfw.efi所在的那个盘。</p>
+<h3 id="MBR-amp-amp-GPT"><a href="#MBR-amp-amp-GPT" class="headerlink" title="MBR &amp;&amp; GPT"></a>MBR &amp;&amp; GPT</h3><p>整块磁盘的第一个扇区特别重要，因为它记录了整块磁盘的重要信息。</p>
+<p>早期磁盘第一个扇区里面含有的重要信息我们称为MBR（master boot record）,但是由于近年来磁盘的容量不断扩大，造成读写上的一些困扰，甚至有些2TB以上的磁盘分区已经无法让操作系统读取，因此后来多了一个新的磁盘分区格式，称为GPT(GUID partition table),这两种分区格式与限制有所不同。</p>
+<p>BIOS模式下的Windows只允许被装在MBR分区表下面。UEFI模式下的Windows只允许被装在GPT分区下。但事实上，MBR分区表，也能启动UEFI模式下的Windows。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/boot/" rel="tag"># boot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/questions-in-cpp/" rel="next" title="C++中的几个疑惑">
+                <i class="fa fa-chevron-left"></i> C++中的几个疑惑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/05/manjaro-setting/" rel="prev" title="尝试manjaro Linux系统">
+                尝试manjaro Linux系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/f57d829f2d1348a5baa08dc8903b9523.jpeg" alt="Cogitates">
+            
+              <p class="site-author-name" itemprop="name">Cogitates</p>
+              <div class="site-description motion-element" itemprop="description">Personal Blog</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/cogitates" title="GitHub &rarr; https://github.com/cogitates" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@gmail.com" title="Gmail &rarr; mailto:weifengzxq@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:weifengzxq@qq.com" title="E-Mail &rarr; mailto:weifengzxq@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://music.163.com/m/user/home?id=435631011" title="Netease music &rarr; http://music.163.com/m/user/home?id=435631011" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Netease music</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#驱动"><span class="nav-number">1.</span> <span class="nav-text">驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EFI系统分区"><span class="nav-number">2.</span> <span class="nav-text">EFI系统分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-8-8-1-10在UEFI和BIOS下，各种启动文件的顺序"><span class="nav-number">3.</span> <span class="nav-text">Windows 8/8.1/10在UEFI和BIOS下，各种启动文件的顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MBR-amp-amp-GPT"><span class="nav-number">4.</span> <span class="nav-text">MBR &amp;&amp; GPT</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cogitates</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
